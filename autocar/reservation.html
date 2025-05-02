@@ -1,0 +1,492 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Finaliser votre réservation - AutocarsLocation</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body class="bg-gray-50 min-h-screen flex flex-col">
+    <!-- Header -->
+    <header class="bg-white shadow-sm">
+        <div class="container mx-auto px-4">
+            <div class="flex justify-between items-center h-16">
+                <a href="index.html" class="font-bold text-xl text-blue-600">
+                    AutocarsLocation
+                </a>
+
+                <!-- Desktop Navigation -->
+                <nav class="hidden md:flex items-center space-x-8">
+                    <a href="index.html" class="text-gray-700 hover:text-blue-600">
+                        Accueil
+                    </a>
+                    <a href="recherche.html" class="text-gray-700 hover:text-blue-600">
+                        Réserver
+                    </a>
+                    <a href="index.html#contact" class="text-gray-700 hover:text-blue-600">
+                        Contact
+                    </a>
+                </nav>
+
+                <!-- Contact Info - Desktop -->
+                <div class="hidden md:flex items-center space-x-4">
+                    <div class="flex items-center text-gray-700">
+                        <i class="fas fa-phone text-blue-600 mr-2"></i>
+                        <span>+33 1 23 45 67 89</span>
+                    </div>
+                </div>
+
+                <!-- Mobile Menu Button -->
+                <button id="menuButton" class="md:hidden text-gray-700">
+                    <i class="fas fa-bars h-6 w-6"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- Mobile Menu -->
+        <div id="mobileMenu" class="md:hidden bg-white border-t py-4 hidden">
+            <div class="container mx-auto px-4 space-y-4">
+                <nav class="flex flex-col space-y-4">
+                    <a href="index.html" class="text-gray-700 hover:text-blue-600 py-2">
+                        Accueil
+                    </a>
+                    <a href="recherche.html" class="text-gray-700 hover:text-blue-600 py-2">
+                        Réserver
+                    </a>
+                    <a href="index.html#contact" class="text-gray-700 hover:text-blue-600 py-2">
+                        Contact
+                    </a>
+                </nav>
+                <div class="pt-4 border-t flex flex-col space-y-4">
+                    <div class="flex items-center text-gray-700">
+                        <i class="fas fa-phone text-blue-600 mr-2"></i>
+                        <span>+33 1 23 45 67 89</span>
+                    </div>
+                    <div class="flex items-center text-gray-700">
+                        <i class="fas fa-envelope text-blue-600 mr-2"></i>
+                        <span>contact@autocars.com</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <div class="min-h-screen bg-gray-50 py-12">
+        <div class="container mx-auto px-4">
+            <a href="resultats.html" class="inline-flex items-center text-blue-600 mb-6 hover:underline" id="backToResults">
+                <i class="fas fa-arrow-left mr-2"></i>
+                Retour aux résultats
+            </a>
+
+            <h1 class="text-3xl font-bold mb-8">Finaliser votre réservation</h1>
+
+            <div id="offerNotFound" class="hidden text-center py-12">
+                <h2 class="text-3xl font-bold mb-4">Offre non trouvée</h2>
+                <p class="mb-6">L'offre que vous recherchez n'existe pas ou a expiré.</p>
+                <a href="recherche.html" class="bg-blue-600 hover:bg-blue-700 text-white py-2 px-4 rounded-md inline-block">
+                    Retour à la recherche
+                </a>
+            </div>
+
+            <div id="reservationContent" class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+                <div class="lg:col-span-2">
+                    <div class="bg-white rounded-lg shadow-md overflow-hidden">
+                        <div class="p-6 border-b">
+                            <h2 class="text-xl font-bold">Informations personnelles</h2>
+                            <p class="text-gray-600">
+                                Veuillez remplir les informations ci-dessous pour confirmer votre réservation
+                            </p>
+                        </div>
+
+                        <form id="reservationForm" class="p-6">
+                            <div class="space-y-6">
+                                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                    <div class="space-y-2">
+                                        <label for="firstName" class="block text-sm font-medium text-gray-700">Prénom</label>
+                                        <input
+                                            id="firstName"
+                                            name="firstName"
+                                            class="w-full rounded-md border border-gray-300 py-2 px-3"
+                                            required
+                                        />
+                                    </div>
+
+                                    <div class="space-y-2">
+                                        <label for="lastName" class="block text-sm font-medium text-gray-700">Nom</label>
+                                        <input
+                                            id="lastName"
+                                            name="lastName"
+                                            class="w-full rounded-md border border-gray-300 py-2 px-3"
+                                            required
+                                        />
+                                    </div>
+                                </div>
+
+                                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                    <div class="space-y-2">
+                                        <label for="email" class="block text-sm font-medium text-gray-700">Email</label>
+                                        <input
+                                            id="email"
+                                            name="email"
+                                            type="email"
+                                            class="w-full rounded-md border border-gray-300 py-2 px-3"
+                                            required
+                                        />
+                                    </div>
+
+                                    <div class="space-y-2">
+                                        <label for="phone" class="block text-sm font-medium text-gray-700">Téléphone</label>
+                                        <input
+                                            id="phone"
+                                            name="phone"
+                                            type="tel"
+                                            class="w-full rounded-md border border-gray-300 py-2 px-3"
+                                            required
+                                        />
+                                    </div>
+                                </div>
+
+                                <div class="space-y-2">
+                                    <label for="company" class="block text-sm font-medium text-gray-700">Entreprise (optionnel)</label>
+                                    <input
+                                        id="company"
+                                        name="company"
+                                        class="w-full rounded-md border border-gray-300 py-2 px-3"
+                                    />
+                                </div>
+
+                                <div class="space-y-2">
+                                    <label for="specialRequests" class="block text-sm font-medium text-gray-700">Demandes spéciales (optionnel)</label>
+                                    <textarea
+                                        id="specialRequests"
+                                        name="specialRequests"
+                                        placeholder="Informations supplémentaires ou demandes particulières"
+                                        rows="4"
+                                        class="w-full rounded-md border border-gray-300 py-2 px-3"
+                                    ></textarea>
+                                </div>
+
+                                <div class="flex items-center space-x-2">
+                                    <input type="checkbox" id="termsAccepted" name="termsAccepted" class="h-4 w-4 text-blue-600 rounded" required>
+                                    <label for="termsAccepted" class="text-sm text-gray-700">
+                                        J'accepte les conditions générales et la politique de confidentialité
+                                    </label>
+                                </div>
+                            </div>
+
+                            <div class="mt-6">
+                                <button type="submit" id="submitButton" class="w-full bg-blue-600 hover:bg-blue-700 text-white py-2 px-4 rounded-md">
+                                    Confirmer la réservation
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+
+                <div>
+                    <div class="bg-white rounded-lg shadow-md overflow-hidden">
+                        <div class="p-6 border-b">
+                            <h2 class="text-xl font-bold">Récapitulatif</h2>
+                        </div>
+
+                        <div class="p-6 space-y-6">
+                            <div>
+                                <h3 class="font-semibold mb-2">Trajet</h3>
+                                <p id="tripSummary" class="text-gray-700"></p>
+                                <p id="dateSummary" class="text-gray-700"></p>
+                            </div>
+
+                            <div>
+                                <h3 class="font-semibold mb-2">Type d'autocar</h3>
+                                <p id="coachTypeSummary" class="text-gray-700 capitalize"></p>
+                            </div>
+
+                            <div>
+                                <h3 class="font-semibold mb-2">Passagers</h3>
+                                <p id="passengersSummary" class="text-gray-700"></p>
+                            </div>
+
+                            <div class="pt-4 border-t">
+                                <div class="flex justify-between items-center mb-2">
+                                    <span class="font-semibold">Prix total</span>
+                                    <span id="priceSummary" class="text-xl font-bold text-blue-600"></span>
+                                </div>
+                                <p class="text-sm text-gray-600" id="priceDetails"></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Toast notification -->
+    <div id="toast" class="fixed top-4 right-4 z-50 transform transition-transform duration-300 translate-x-full">
+        <div class="bg-white rounded-lg shadow-lg overflow-hidden max-w-md">
+            <div class="p-4 flex items-start">
+                <div id="toastIcon" class="flex-shrink-0 mr-3"></div>
+                <div class="flex-1">
+                    <h3 id="toastTitle" class="text-sm font-medium"></h3>
+                    <p id="toastMessage" class="mt-1 text-sm text-gray-500"></p>
+                </div>
+                <button onclick="hideToast()" class="ml-4 flex-shrink-0 text-gray-400 hover:text-gray-500">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white py-8 mt-auto">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-col md:flex-row justify-between items-center">
+                <div class="mb-4 md:mb-0">
+                    <h2 class="text-2xl font-bold">AutocarsLocation</h2>
+                </div>
+                <div class="flex space-x-6">
+                    <a href="recherche.html" class="hover:text-blue-300">
+                        Réserver
+                    </a>
+                    <a href="index.html#contact" class="hover:text-blue-300">
+                        Contact
+                    </a>
+                    <a href="#" class="hover:text-blue-300">
+                        Mentions légales
+                    </a>
+                </div>
+            </div>
+            <div class="mt-8 text-center text-gray-400">
+                <p>© <span id="currentYear"></span> AutocarsLocation. Tous droits réservés.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile menu toggle
+        document.getElementById('menuButton').addEventListener('click', function() {
+            const mobileMenu = document.getElementById('mobileMenu');
+            const menuIcon = this.querySelector('i');
+            
+            if (mobileMenu.classList.contains('hidden')) {
+                mobileMenu.classList.remove('hidden');
+                menuIcon.classList.remove('fa-bars');
+                menuIcon.classList.add('fa-times');
+            } else {
+                mobileMenu.classList.add('hidden');
+                menuIcon.classList.remove('fa-times');
+                menuIcon.classList.add('fa-bars');
+            }
+        });
+
+        // Set current year in footer
+        document.getElementById('currentYear').textContent = new Date().getFullYear();
+
+        // Mock data for offers
+        const mockOffers = [
+            {
+                id: "offer-1",
+                departCity: "Paris",
+                arrivalCity: "Lyon",
+                departDate: "2023-06-15",
+                departTime: "08:00",
+                arrivalTime: "12:30",
+                duration: "4h30",
+                coachType: "standard",
+                price: 450,
+                availableSeats: 45,
+                features: ["WiFi", "Climatisation", "Toilettes", "Prises électriques"]
+            },
+            {
+                id: "offer-2",
+                departCity: "Paris",
+                arrivalCity: "Lyon",
+                departDate: "2023-06-15",
+                departTime: "10:30",
+                arrivalTime: "15:00",
+                duration: "4h30",
+                coachType: "premium",
+                price: 650,
+                availableSeats: 35,
+                features: ["WiFi", "Climatisation", "Toilettes", "Prises électriques", "Sièges inclinables", "Plus d'espace"]
+            },
+            {
+                id: "offer-3",
+                departCity: "Paris",
+                arrivalCity: "Lyon",
+                departDate: "2023-06-15",
+                departTime: "14:00",
+                arrivalTime: "18:30",
+                duration: "4h30",
+                coachType: "vip",
+                price: 950,
+                availableSeats: 25,
+                features: ["WiFi", "Climatisation", "Toilettes", "Prises électriques", "Sièges inclinables", "Service de restauration", "Écrans individuels"]
+            },
+            {
+                id: "offer-4",
+                departCity: "Lyon",
+                arrivalCity: "Paris",
+                departDate: "2023-06-15",
+                departTime: "07:30",
+                arrivalTime: "12:00",
+                duration: "4h30",
+                coachType: "standard",
+                price: 450,
+                availableSeats: 42,
+                features: ["WiFi", "Climatisation", "Toilettes", "Prises électriques"]
+            },
+            {
+                id: "offer-5",
+                departCity: "Lyon",
+                arrivalCity: "Paris",
+                departDate: "2023-06-15",
+                departTime: "13:00",
+                arrivalTime: "17:30",
+                duration: "4h30",
+                coachType: "premium",
+                price: 650,
+                availableSeats: 30,
+                features: ["WiFi", "Climatisation", "Toilettes", "Prises électriques", "Sièges inclinables", "Plus d'espace"]
+            },
+            {
+                id: "offer-6",
+                departCity: "Marseille",
+                arrivalCity: "Paris",
+                departDate: "2023-06-15",
+                departTime: "06:00",
+                arrivalTime: "13:30",
+                duration: "7h30",
+                coachType: "standard",
+                price: 750,
+                availableSeats: 40,
+                features: ["WiFi", "Climatisation", "Toilettes", "Prises électriques"]
+            },
+            {
+                id: "offer-7",
+                departCity: "Marseille",
+                arrivalCity: "Lyon",
+                departDate: "2023-06-15",
+                departTime: "09:00",
+                arrivalTime: "12:30",
+                duration: "3h30",
+                coachType: "standard",
+                price: 350,
+                availableSeats: 38,
+                features: ["WiFi", "Climatisation", "Toilettes", "Prises électriques"]
+            },
+            {
+                id: "offer-8",
+                departCity: "Nice",
+                arrivalCity: "Paris",
+                departDate: "2023-06-15",
+                departTime: "05:30",
+                arrivalTime: "15:00",
+                duration: "9h30",
+                coachType: "premium",
+                price: 950,
+                availableSeats: 32,
+                features: ["WiFi", "Climatisation", "Toilettes", "Prises électriques", "Sièges inclinables", "Plus d'espace"]
+            }
+        ];
+
+        // Parse URL parameters
+        const urlParams = new URLSearchParams(window.location.search);
+        const offerId = urlParams.get('offerId');
+        const passengers = urlParams.get('passengers') || '1';
+        const departDate = urlParams.get('departDate') || '';
+
+        // Format date for display
+        function formatDate(dateString) {
+            if (!dateString) return '';
+            const date = new Date(dateString);
+            return date.toLocaleDateString('fr-FR', {
+                day: 'numeric',
+                month: 'long',
+                year: 'numeric'
+            });
+        }
+
+        // Find the selected offer
+        const selectedOffer = mockOffers.find(offer => offer.id === offerId);
+
+        // Update back link with search parameters
+        document.getElementById('backToResults').href = `resultats.html${window.location.search.replace(`&offerId=${offerId}`, '')}`;
+
+        // Show/hide content based on whether offer was found
+        if (!selectedOffer) {
+            document.getElementById('offerNotFound').classList.remove('hidden');
+            document.getElementById('reservationContent').classList.add('hidden');
+        } else {
+            // Update summary information
+            document.getElementById('tripSummary').textContent = `${selectedOffer.departCity} → ${selectedOffer.arrivalCity}`;
+            document.getElementById('dateSummary').textContent = `${formatDate(departDate)} | ${selectedOffer.departTime} - ${selectedOffer.arrivalTime}`;
+            document.getElementById('coachTypeSummary').textContent = selectedOffer.coachType;
+            document.getElementById('passengersSummary').textContent = `${passengers} passager(s)`;
+            document.getElementById('priceSummary').textContent = `${selectedOffer.price} €`;
+            document.getElementById('priceDetails').textContent = `Prix pour ${passengers} passager(s), TVA incluse`;
+        }
+
+        // Toast notification functions
+        function showToast(title, message, type = 'success') {
+            const toast = document.getElementById('toast');
+            const toastTitle = document.getElementById('toastTitle');
+            const toastMessage = document.getElementById('toastMessage');
+            const toastIcon = document.getElementById('toastIcon');
+            
+            toastTitle.textContent = title;
+            toastMessage.textContent = message;
+            
+            // Set icon based on type
+            if (type === 'success') {
+                toastIcon.innerHTML = '<i class="fas fa-check-circle text-green-500 text-xl"></i>';
+                toast.classList.add('bg-green-50');
+            } else if (type === 'error') {
+                toastIcon.innerHTML = '<i class="fas fa-exclamation-circle text-red-500 text-xl"></i>';
+                toast.classList.add('bg-red-50');
+            }
+            
+            // Show toast
+            toast.classList.remove('translate-x-full');
+            
+            // Auto hide after 5 seconds
+            setTimeout(hideToast, 5000);
+        }
+        
+        function hideToast() {
+            const toast = document.getElementById('toast');
+            toast.classList.add('translate-x-full');
+        }
+
+        // Form submission
+        document.getElementById('reservationForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Check terms acceptance
+            if (!document.getElementById('termsAccepted').checked) {
+                showToast('Erreur', 'Vous devez accepter les conditions générales pour continuer.', 'error');
+                return;
+            }
+            
+            // Disable submit button and show loading state
+            const submitButton = document.getElementById('submitButton');
+            const originalButtonText = submitButton.innerHTML;
+            submitButton.disabled = true;
+            submitButton.innerHTML = `
+                <div class="inline-block mr-2 h-4 w-4 animate-spin rounded-full border-2 border-white border-t-transparent"></div>
+                Traitement en cours...
+            `;
+            
+            // Simulate API call with a delay
+            setTimeout(() => {
+                // Re-enable button
+                submitButton.disabled = false;
+                submitButton.innerHTML = originalButtonText;
+                
+                // Redirect to confirmation page
+                window.location.href = 'confirmation.html';
+            }, 1500);
+        });
+    </script>
+</body>
+</html>

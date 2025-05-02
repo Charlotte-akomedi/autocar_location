@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Réserver un autocar - AutocarsLocation</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body class="bg-gray-50 min-h-screen flex flex-col">
+    <!-- Header -->
+    <header class="bg-white shadow-sm">
+        <div class="container mx-auto px-4">
+            <div class="flex justify-between items-center h-16">
+                <a href="index.html" class="font-bold text-xl text-blue-600">
+                    AutocarsLocation
+                </a>
+
+                <!-- Desktop Navigation -->
+                <nav class="hidden md:flex items-center space-x-8">
+                    <a href="index.html" class="text-gray-700 hover:text-blue-600">
+                        Accueil
+                    </a>
+                    <a href="recherche.html" class="text-gray-700 hover:text-blue-600">
+                        Réserver
+                    </a>
+                    <a href="index.html#contact" class="text-gray-700 hover:text-blue-600">
+                        Contact
+                    </a>
+                </nav>
+
+                <!-- Contact Info - Desktop -->
+                <div class="hidden md:flex items-center space-x-4">
+                    <div class="flex items-center text-gray-700">
+                        <i class="fas fa-phone text-blue-600 mr-2"></i>
+                        <span>+33 1 23 45 67 89</span>
+                    </div>
+                </div>
+
+                <!-- Mobile Menu Button -->
+                <button id="menuButton" class="md:hidden text-gray-700">
+                    <i class="fas fa-bars h-6 w-6"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- Mobile Menu -->
+        <div id="mobileMenu" class="md:hidden bg-white border-t py-4 hidden">
+            <div class="container mx-auto px-4 space-y-4">
+                <nav class="flex flex-col space-y-4">
+                    <a href="index.html" class="text-gray-700 hover:text-blue-600 py-2">
+                        Accueil
+                    </a>
+                    <a href="recherche.html" class="text-gray-700 hover:text-blue-600 py-2">
+                        Réserver
+                    </a>
+                    <a href="index.html#contact" class="text-gray-700 hover:text-blue-600 py-2">
+                        Contact
+                    </a>
+                </nav>
+                <div class="pt-4 border-t flex flex-col space-y-4">
+                    <div class="flex items-center text-gray-700">
+                        <i class="fas fa-phone text-blue-600 mr-2"></i>
+                        <span>+33 1 23 45 67 89</span>
+                    </div>
+                    <div class="flex items-center text-gray-700">
+                        <i class="fas fa-envelope text-blue-600 mr-2"></i>
+                        <span>contact@autocars.com</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <div class="min-h-screen bg-gray-50 py-12">
+        <div class="container mx-auto px-4">
+            <a href="index.html" class="inline-flex items-center text-blue-600 mb-6 hover:underline">
+                <i class="fas fa-arrow-left mr-2"></i>
+                Retour à l'accueil
+            </a>
+
+            <div class="bg-white rounded-lg shadow-md overflow-hidden max-w-3xl mx-auto">
+                <div class="p-6 border-b">
+                    <h1 class="text-2xl font-bold">Réserver un autocar</h1>
+                    <p class="text-gray-600">
+                        Remplissez le formulaire ci-dessous pour trouver un autocar adapté à vos besoins
+                    </p>
+                </div>
+
+                <form id="searchForm" class="p-6">
+                    <div class="space-y-6">
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <div class="space-y-2">
+                                <label for="departCity" class="block text-sm font-medium text-gray-700">Ville de départ</label>
+                                <div class="relative">
+                                    <i class="fas fa-map-marker-alt absolute left-3 top-3 text-gray-400"></i>
+                                    <input
+                                        id="departCity"
+                                        name="departCity"
+                                        placeholder="Paris, Lyon, Marseille..."
+                                        class="pl-10 w-full rounded-md border border-gray-300 py-2 px-3"
+                                        required
+                                    />
+                                </div>
+                            </div>
+
+                            <div class="space-y-2">
+                                <label for="arrivalCity" class="block text-sm font-medium text-gray-700">Ville d'arrivée</label>
+                                <div class="relative">
+                                    <i class="fas fa-map-marker-alt absolute left-3 top-3 text-gray-400"></i>
+                                    <input
+                                        id="arrivalCity"
+                                        name="arrivalCity"
+                                        placeholder="Paris, Lyon, Marseille..."
+                                        class="pl-10 w-full rounded-md border border-gray-300 py-2 px-3"
+                                        required
+                                    />
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <div class="space-y-2">
+                                <label for="departDate" class="block text-sm font-medium text-gray-700">Date de départ</label>
+                                <div class="relative">
+                                    <i class="fas fa-calendar absolute left-3 top-3 text-gray-400"></i>
+                                    <input
+                                        id="departDate"
+                                        name="departDate"
+                                        type="date"
+                                        class="pl-10 w-full rounded-md border border-gray-300 py-2 px-3"
+                                        required
+                                    />
+                                </div>
+                            </div>
+
+                            <div class="space-y-2">
+                                <label for="returnDate" class="block text-sm font-medium text-gray-700">Date de retour (optionnel)</label>
+                                <div class="relative">
+                                    <i class="fas fa-calendar absolute left-3 top-3 text-gray-400"></i>
+                                    <input
+                                        id="returnDate"
+                                        name="returnDate"
+                                        type="date"
+                                        class="pl-10 w-full rounded-md border border-gray-300 py-2 px-3"
+                                    />
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <div class="space-y-2">
+                                <label for="passengers" class="block text-sm font-medium text-gray-700">Nombre de passagers</label>
+                                <div class="relative">
+                                    <i class="fas fa-users absolute left-3 top-3 text-gray-400"></i>
+                                    <select
+                                        id="passengers"
+                                        name="passengers"
+                                        class="pl-10 w-full rounded-md border border-gray-300 py-2 px-3 appearance-none"
+                                        required
+                                    >
+                                        <option value="" disabled selected>Sélectionnez le nombre</option>
+                                        <!-- Options will be added by JavaScript -->
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="space-y-2">
+                                <label class="block text-sm font-medium text-gray-700">Type d'autocar</label>
+                                <div class="space-y-2">
+                                    <div class="flex items-center">
+                                        <input type="radio" id="standard" name="coachType" value="standard" class="h-4 w-4 text-blue-600" checked>
+                                        <label for="standard" class="ml-2 text-gray-700 cursor-pointer">Standard</label>
+                                    </div>
+                                    <div class="flex items-center">
+                                        <input type="radio" id="premium" name="coachType" value="premium" class="h-4 w-4 text-blue-600">
+                                        <label for="premium" class="ml-2 text-gray-700 cursor-pointer">Premium</label>
+                                    </div>
+                                    <div class="flex items-center">
+                                        <input type="radio" id="vip" name="coachType" value="vip" class="h-4 w-4 text-blue-600">
+                                        <label for="vip" class="ml-2 text-gray-700 cursor-pointer">VIP</label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="mt-6">
+                        <button type="submit" class="w-full bg-blue-600 hover:bg-blue-700 text-white py-2 px-4 rounded-md">
+                            Rechercher un autocar
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white py-8 mt-auto">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-col md:flex-row justify-between items-center">
+                <div class="mb-4 md:mb-0">
+                    <h2 class="text-2xl font-bold">AutocarsLocation</h2>
+                </div>
+                <div class="flex space-x-6">
+                    <a href="recherche.html" class="hover:text-blue-300">
+                        Réserver
+                    </a>
+                    <a href="index.html#contact" class="hover:text-blue-300">
+                        Contact
+                    </a>
+                    <a href="#" class="hover:text-blue-300">
+                        Mentions légales
+                    </a>
+                </div>
+            </div>
+            <div class="mt-8 text-center text-gray-400">
+                <p>© <span id="currentYear"></span> AutocarsLocation. Tous droits réservés.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile menu toggle
+        document.getElementById('menuButton').addEventListener('click', function() {
+            const mobileMenu = document.getElementById('mobileMenu');
+            const menuIcon = this.querySelector('i');
+            
+            if (mobileMenu.classList.contains('hidden')) {
+                mobileMenu.classList.remove('hidden');
+                menuIcon.classList.remove('fa-bars');
+                menuIcon.classList.add('fa-times');
+            } else {
+                mobileMenu.classList.add('hidden');
+                menuIcon.classList.remove('fa-times');
+                menuIcon.classList.add('fa-bars');
+            }
+        });
+
+        // Set current year in footer
+        document.getElementById('currentYear').textContent = new Date().getFullYear();
+
+        // Populate passengers dropdown
+        const passengersSelect = document.getElementById('passengers');
+        for (let i = 1; i <= 50; i++) {
+            const option = document.createElement('option');
+            option.value = i;
+            option.textContent = i + (i === 1 ? ' passager' : ' passagers');
+            passengersSelect.appendChild(option);
+        }
+
+        // Set default date values
+        const today = new Date();
+        const tomorrow = new Date(today);
+        tomorrow.setDate(tomorrow.getDate() + 1);
+        
+        const formatDate = (date) => {
+            const year = date.getFullYear();
+            const month = String(date.getMonth() + 1).padStart(2, '0');
+            const day = String(date.getDate()).padStart(2, '0');
+            return `${year}-${month}-${day}`;
+        };
+        
+        document.getElementById('departDate').value = formatDate(today);
+        
+        // Form submission
+        document.getElementById('searchForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Get form values
+            const departCity = document.getElementById('departCity').value;
+            const arrivalCity = document.getElementById('arrivalCity').value;
+            const departDate = document.getElementById('departDate').value;
+            const returnDate = document.getElementById('returnDate').value;
+            const passengers = document.getElementById('passengers').value;
+            const coachType = document.querySelector('input[name="coachType"]:checked').value;
+            
+            // Build query string
+            const queryParams = new URLSearchParams();
+            queryParams.append('departCity', departCity);
+            queryParams.append('arrivalCity', arrivalCity);
+            queryParams.append('departDate', departDate);
+            if (returnDate) queryParams.append('returnDate', returnDate);
+            queryParams.append('passengers', passengers);
+            queryParams.append('coachType', coachType);
+            
+            // Redirect to results page
+            window.location.href = `resultats.html?${queryParams.toString()}`;
+        });
+    </script>
+</body>
+</html>
