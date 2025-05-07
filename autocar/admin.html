@@ -1,0 +1,646 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Espace Partenaire - AutocarsLocation</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body class="bg-gray-50 min-h-screen flex flex-col">
+    <!-- Header -->
+    <header class="bg-white shadow-sm">
+        <div class="container mx-auto px-4">
+            <div class="flex justify-between items-center h-16">
+                <a href="index.html" class="font-bold text-xl text-blue-600">
+                    AutocarsLocation
+                </a>
+
+                <!-- Desktop Navigation -->
+                <nav class="hidden md:flex items-center space-x-8">
+                    <a href="index.html" class="text-gray-700 hover:text-blue-600">
+                        Accueil
+                    </a>
+                    <a href="recherche.html" class="text-gray-700 hover:text-blue-600">
+                        Réserver
+                    </a>
+                    <a href="index.html#contact" class="text-gray-700 hover:text-blue-600">
+                        Contact
+                    </a>
+                </nav>
+
+                <!-- Partner Info - Desktop -->
+                <div class="hidden md:flex items-center space-x-4">
+                    <div class="flex items-center text-gray-700">
+                        <i class="fas fa-user text-blue-600 mr-2"></i>
+                        <span id="partnerName">Partenaire</span>
+                    </div>
+                    <button id="logoutButton" class="bg-gray-200 hover:bg-gray-300 text-gray-700 px-4 py-2 rounded text-sm">
+                        Déconnexion
+                    </button>
+                </div>
+
+                <!-- Mobile Menu Button -->
+                <button id="menuButton" class="md:hidden text-gray-700">
+                    <i class="fas fa-bars h-6 w-6"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- Mobile Menu -->
+        <div id="mobileMenu" class="md:hidden bg-white border-t py-4 hidden">
+            <div class="container mx-auto px-4 space-y-4">
+                <nav class="flex flex-col space-y-4">
+                    <a href="index.html" class="text-gray-700 hover:text-blue-600 py-2">
+                        Accueil
+                    </a>
+                    <a href="recherche.html" class="text-gray-700 hover:text-blue-600 py-2">
+                        Réserver
+                    </a>
+                    <a href="index.html#contact" class="text-gray-700 hover:text-blue-600 py-2">
+                        Contact
+                    </a>
+                </nav>
+                <div class="pt-4 border-t flex flex-col space-y-4">
+                    <div class="flex items-center text-gray-700">
+                        <i class="fas fa-user text-blue-600 mr-2"></i>
+                        <span id="partnerNameMobile">Partenaire</span>
+                    </div>
+                    <button id="logoutButtonMobile" class="bg-gray-200 hover:bg-gray-300 text-gray-700 px-4 py-2 rounded text-center">
+                        Déconnexion
+                    </button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <div class="min-h-screen bg-gray-50 py-12">
+        <div class="container mx-auto px-4">
+            <h1 class="text-3xl font-bold mb-8">Tableau de bord partenaire</h1>
+
+            <!-- Tabs -->
+            <div class="mb-8 border-b">
+                <div class="flex flex-wrap -mb-px">
+                    <button id="tabAutocars" class="tab-button mr-2 inline-block p-4 border-b-2 border-blue-600 rounded-t-lg active">
+                        <i class="fas fa-bus mr-2"></i>
+                        Mes Autocars
+                    </button>
+                    <button id="tabReservations" class="tab-button mr-2 inline-block p-4 border-b-2 border-transparent rounded-t-lg hover:text-gray-600 hover:border-gray-300">
+                        <i class="fas fa-calendar-check mr-2"></i>
+                        Réservations
+                    </button>
+                </div>
+            </div>
+
+            <!-- Autocars Tab Content -->
+            <div id="autocarsContent" class="tab-content">
+                <div class="flex justify-between items-center mb-6">
+                    <h2 class="text-xl font-semibold">Mes Autocars</h2>
+                    <button id="addAutocarButton" class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-md">
+                        <i class="fas fa-plus mr-2"></i>
+                        Ajouter un autocar
+                    </button>
+                </div>
+
+                <div class="bg-white rounded-lg shadow-md overflow-hidden">
+                    <div class="overflow-x-auto">
+                        <table class="min-w-full divide-y divide-gray-200">
+                            <thead class="bg-gray-50">
+                                <tr>
+                                    <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                        ID
+                                    </th>
+                                    <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                        Type
+                                    </th>
+                                    <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                        Capacité
+                                    </th>
+                                    <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                        Prix
+                                    </th>
+                                    <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                        Disponibilité
+                                    </th>
+                                    <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                        Actions
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody id="autocarsList" class="bg-white divide-y divide-gray-200">
+                                <!-- Autocars will be loaded here -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Reservations Tab Content -->
+            <div id="reservationsContent" class="tab-content hidden">
+                <div class="flex justify-between items-center mb-6">
+                    <h2 class="text-xl font-semibold">Réservations</h2>
+                </div>
+
+                <div class="bg-white rounded-lg shadow-md overflow-hidden">
+                    <div class="overflow-x-auto">
+                        <table class="min-w-full divide-y divide-gray-200">
+                            <thead class="bg-gray-50">
+                                <tr>
+                                    <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                        ID
+                                    </th>
+                                    <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                        Client
+                                    </th>
+                                    <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                        Trajet
+                                    </th>
+                                    <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                        Date
+                                    </th>
+                                    <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                        Autocar
+                                    </th>
+                                    <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                        Actions
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody id="reservationsList" class="bg-white divide-y divide-gray-200">
+                                <!-- Reservations will be loaded here -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Add/Edit Autocar Modal -->
+    <div id="autocarModal" class="fixed inset-0 bg-gray-600 bg-opacity-50 flex items-center justify-center hidden z-50">
+        <div class="bg-white rounded-lg shadow-lg max-w-md w-full">
+            <div class="p-6 border-b">
+                <h3 id="modalTitle" class="text-xl font-bold">Ajouter un autocar</h3>
+            </div>
+            <form id="autocarForm" class="p-6 space-y-4">
+                <input type="hidden" id="autocarId" value="">
+                
+                <div class="space-y-2">
+                    <label for="autocarType" class="block text-sm font-medium text-gray-700">Type</label>
+                    <select id="autocarType" class="w-full rounded-md border border-gray-300 py-2 px-3" required>
+                        <option value="standard">Standard</option>
+                        <option value="premium">Premium</option>
+                        <option value="vip">VIP</option>
+                    </select>
+                </div>
+                
+                <div class="space-y-2">
+                    <label for="autocarCapacite" class="block text-sm font-medium text-gray-700">Capacité</label>
+                    <input
+                        id="autocarCapacite"
+                        type="number"
+                        min="1"
+                        max="100"
+                        class="w-full rounded-md border border-gray-300 py-2 px-3"
+                        required
+                    />
+                </div>
+                
+                <div class="space-y-2">
+                    <label for="autocarPrix" class="block text-sm font-medium text-gray-700">Prix (€)</label>
+                    <input
+                        id="autocarPrix"
+                        type="number"
+                        min="1"
+                        class="w-full rounded-md border border-gray-300 py-2 px-3"
+                        required
+                    />
+                </div>
+                
+                <div class="space-y-2">
+                    <label for="autocarDisponible" class="block text-sm font-medium text-gray-700">Disponibilité</label>
+                    <select id="autocarDisponible" class="w-full rounded-md border border-gray-300 py-2 px-3" required>
+                        <option value="true">Disponible</option>
+                        <option value="false">Non disponible</option>
+                    </select>
+                </div>
+                
+                <div class="pt-4 flex justify-end space-x-3">
+                    <button type="button" id="cancelAutocarButton" class="bg-gray-200 hover:bg-gray-300 text-gray-700 px-4 py-2 rounded-md">
+                        Annuler
+                    </button>
+                    <button type="submit" class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-md">
+                        Enregistrer
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- View Reservation Modal -->
+    <div id="reservationModal" class="fixed inset-0 bg-gray-600 bg-opacity-50 flex items-center justify-center hidden z-50">
+        <div class="bg-white rounded-lg shadow-lg max-w-md w-full">
+            <div class="p-6 border-b">
+                <h3 class="text-xl font-bold">Détails de la réservation</h3>
+            </div>
+            <div id="reservationDetails" class="p-6 space-y-4">
+                <!-- Reservation details will be loaded here -->
+            </div>
+            <div class="p-6 border-t flex justify-end">
+                <button type="button" id="closeReservationButton" class="bg-gray-200 hover:bg-gray-300 text-gray-700 px-4 py-2 rounded-md">
+                    Fermer
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white py-8 mt-auto">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-col md:flex-row justify-between items-center">
+                <div class="mb-4 md:mb-0">
+                    <h2 class="text-2xl font-bold">AutocarsLocation</h2>
+                </div>
+                <div class="flex space-x-6">
+                    <a href="recherche.html" class="hover:text-blue-300">
+                        Réserver
+                    </a>
+                    <a href="index.html#contact" class="hover:text-blue-300">
+                        Contact
+                    </a>
+                    <a href="#" class="hover:text-blue-300">
+                        Mentions légales
+                    </a>
+                </div>
+            </div>
+            <div class="mt-8 text-center text-gray-400">
+                <p>© <span id="currentYear"></span> AutocarsLocation. Tous droits réservés.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/db.js"></script>
+    <script>
+        // Check if user is logged in
+        document.addEventListener('DOMContentLoaded', function() {
+            const currentPartner = JSON.parse(sessionStorage.getItem('currentPartner'));
+            
+            if (!currentPartner) {
+                // Redirect to login page if not logged in
+                window.location.href = 'login.html';
+                return;
+            }
+            
+            // Set partner name
+            document.getElementById('partnerName').textContent = currentPartner.nom;
+            document.getElementById('partnerNameMobile').textContent = currentPartner.nom;
+            
+            // Load partner's autocars
+            loadAutocars();
+            
+            // Load partner's reservations
+            loadReservations();
+        });
+        
+        // Mobile menu toggle
+        document.getElementById('menuButton').addEventListener('click', function() {
+            const mobileMenu = document.getElementById('mobileMenu');
+            const menuIcon = this.querySelector('i');
+            
+            if (mobileMenu.classList.contains('hidden')) {
+                mobileMenu.classList.remove('hidden');
+                menuIcon.classList.remove('fa-bars');
+                menuIcon.classList.add('fa-times');
+            } else {
+                mobileMenu.classList.add('hidden');
+                menuIcon.classList.remove('fa-times');
+                menuIcon.classList.add('fa-bars');
+            }
+        });
+
+        // Set current year in footer
+        document.getElementById('currentYear').textContent = new Date().getFullYear();
+        
+        // Tab switching
+        document.getElementById('tabAutocars').addEventListener('click', function() {
+            switchTab('autocars');
+        });
+        
+        document.getElementById('tabReservations').addEventListener('click', function() {
+            switchTab('reservations');
+        });
+        
+        function switchTab(tabName) {
+            // Hide all tab contents
+            document.querySelectorAll('.tab-content').forEach(content => {
+                content.classList.add('hidden');
+            });
+            
+            // Remove active class from all tab buttons
+            document.querySelectorAll('.tab-button').forEach(button => {
+                button.classList.remove('active', 'border-blue-600');
+                button.classList.add('border-transparent');
+            });
+            
+            // Show selected tab content
+            document.getElementById(tabName + 'Content').classList.remove('hidden');
+            
+            // Add active class to selected tab button
+            document.getElementById('tab' + tabName.charAt(0).toUpperCase() + tabName.slice(1)).classList.add('active', 'border-blue-600');
+            document.getElementById('tab' + tabName.charAt(0).toUpperCase() + tabName.slice(1)).classList.remove('border-transparent');
+        }
+        
+        // Load partner's autocars
+        function loadAutocars() {
+            const currentPartner = JSON.parse(sessionStorage.getItem('currentPartner'));
+            const autocars = DB.getPartnerAutocars(currentPartner.id);
+            
+            const autocarsList = document.getElementById('autocarsList');
+            autocarsList.innerHTML = '';
+            
+            autocars.forEach(autocar => {
+                const row = document.createElement('tr');
+                
+                row.innerHTML = `
+                    <td class="px-6 py-4 whitespace-nowrap">
+                        <div class="text-sm text-gray-900">${autocar.id}</div>
+                    </td>
+                    <td class="px-6 py-4 whitespace-nowrap">
+                        <div class="text-sm text-gray-900 capitalize">${autocar.type}</div>
+                    </td>
+                    <td class="px-6 py-4 whitespace-nowrap">
+                        <div class="text-sm text-gray-900">${autocar.capacite} places</div>
+                    </td>
+                    <td class="px-6 py-4 whitespace-nowrap">
+                        <div class="text-sm text-gray-900">${autocar.prix} €</div>
+                    </td>
+                    <td class="px-6 py-4 whitespace-nowrap">
+                        <span class="px-2 py-1 inline-flex text-xs leading-5 font-semibold rounded-full ${
+                            autocar.disponible ? 'bg-green-100 text-green-800' : 'bg-red-100 text-red-800'
+                        }">
+                            ${autocar.disponible ? 'Disponible' : 'Non disponible'}
+                        </span>
+                    </td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">
+                        <button class="text-blue-600 hover:text-blue-900 mr-3 edit-autocar" data-id="${autocar.id}">
+                            <i class="fas fa-edit"></i> Modifier
+                        </button>
+                        <button class="text-red-600 hover:text-red-900 delete-autocar" data-id="${autocar.id}">
+                            <i class="fas fa-trash"></i> Supprimer
+                        </button>
+                    </td>
+                `;
+                
+                autocarsList.appendChild(row);
+            });
+            
+            // Add event listeners for edit buttons
+            document.querySelectorAll('.edit-autocar').forEach(button => {
+                button.addEventListener('click', function() {
+                    const autocarId = this.getAttribute('data-id');
+                    openEditAutocarModal(autocarId);
+                });
+            });
+            
+            // Add event listeners for delete buttons
+            document.querySelectorAll('.delete-autocar').forEach(button => {
+                button.addEventListener('click', function() {
+                    const autocarId = this.getAttribute('data-id');
+                    if (confirm('Êtes-vous sûr de vouloir supprimer cet autocar ?')) {
+                        deleteAutocar(autocarId);
+                    }
+                });
+            });
+        }
+        
+        // Load partner's reservations
+        function loadReservations() {
+            const currentPartner = JSON.parse(sessionStorage.getItem('currentPartner'));
+            const reservations = DB.getPartnerReservations(currentPartner.id);
+            
+            const reservationsList = document.getElementById('reservationsList');
+            reservationsList.innerHTML = '';
+            
+            if (reservations.length === 0) {
+                const row = document.createElement('tr');
+                row.innerHTML = `
+                    <td colspan="6" class="px-6 py-4 text-center text-gray-500">
+                        Aucune réservation trouvée
+                    </td>
+                `;
+                reservationsList.appendChild(row);
+                return;
+            }
+            
+            reservations.forEach(reservation => {
+                const autocarId = parseInt(reservation.offerId.split('-')[1]);
+                const autocar = DB.getById('autocars', autocarId);
+                
+                const row = document.createElement('tr');
+                
+                row.innerHTML = `
+                    <td class="px-6 py-4 whitespace-nowrap">
+                        <div class="text-sm text-gray-900">${reservation.id}</div>
+                    </td>
+                    <td class="px-6 py-4 whitespace-nowrap">
+                        <div class="text-sm font-medium text-gray-900">${reservation.firstName} ${reservation.lastName}</div>
+                        <div class="text-sm text-gray-500">${reservation.email}</div>
+                    </td>
+                    <td class="px-6 py-4 whitespace-nowrap">
+                        <div class="text-sm text-gray-900">${reservation.departCity} → ${reservation.arrivalCity}</div>
+                    </td>
+                    <td class="px-6 py-4 whitespace-nowrap">
+                        <div class="text-sm text-gray-900">${formatDate(reservation.departDate)}</div>
+                    </td>
+                    <td class="px-6 py-4 whitespace-nowrap">
+                        <div class="text-sm text-gray-900 capitalize">${autocar ? autocar.type : 'N/A'}</div>
+                    </td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">
+                        <button class="text-blue-600 hover:text-blue-900 view-reservation" data-id="${reservation.id}">
+                            <i class="fas fa-eye"></i> Voir
+                        </button>
+                    </td>
+                `;
+                
+                reservationsList.appendChild(row);
+            });
+            
+            // Add event listeners for view buttons
+            document.querySelectorAll('.view-reservation').forEach(button => {
+                button.addEventListener('click', function() {
+                    const reservationId = this.getAttribute('data-id');
+                    openViewReservationModal(reservationId);
+                });
+            });
+        }
+        
+        // Format date for display
+        function formatDate(dateString) {
+            if (!dateString) return '';
+            const date = new Date(dateString);
+            return date.toLocaleDateString('fr-FR', {
+                day: 'numeric',
+                month: 'long',
+                year: 'numeric'
+            });
+        }
+        
+        // Add autocar button
+        document.getElementById('addAutocarButton').addEventListener('click', function() {
+            openAddAutocarModal();
+        });
+        
+        // Cancel autocar modal
+        document.getElementById('cancelAutocarButton').addEventListener('click', function() {
+            closeAutocarModal();
+        });
+        
+        // Close reservation modal
+        document.getElementById('closeReservationButton').addEventListener('click', function() {
+            closeReservationModal();
+        });
+        
+        // Open add autocar modal
+        function openAddAutocarModal() {
+            document.getElementById('modalTitle').textContent = 'Ajouter un autocar';
+            document.getElementById('autocarId').value = '';
+            document.getElementById('autocarType').value = 'standard';
+            document.getElementById('autocarCapacite').value = '';
+            document.getElementById('autocarPrix').value = '';
+            document.getElementById('autocarDisponible').value = 'true';
+            
+            document.getElementById('autocarModal').classList.remove('hidden');
+        }
+        
+        // Open edit autocar modal
+        function openEditAutocarModal(autocarId) {
+            const autocar = DB.getById('autocars', autocarId);
+            
+            document.getElementById('modalTitle').textContent = 'Modifier un autocar';
+            document.getElementById('autocarId').value = autocar.id;
+            document.getElementById('autocarType').value = autocar.type;
+            document.getElementById('autocarCapacite').value = autocar.capacite;
+            document.getElementById('autocarPrix').value = autocar.prix;
+            document.getElementById('autocarDisponible').value = autocar.disponible.toString();
+            
+            document.getElementById('autocarModal').classList.remove('hidden');
+        }
+        
+        // Close autocar modal
+        function closeAutocarModal() {
+            document.getElementById('autocarModal').classList.add('hidden');
+        }
+        
+        // Open view reservation modal
+        function openViewReservationModal(reservationId) {
+            const reservation = DB.getById('reservations', reservationId);
+            const autocarId = parseInt(reservation.offerId.split('-')[1]);
+            const autocar = DB.getById('autocars', autocarId);
+            
+            const reservationDetails = document.getElementById('reservationDetails');
+            
+            reservationDetails.innerHTML = `
+                <div class="space-y-4">
+                    <div>
+                        <h4 class="text-sm font-medium text-gray-500">Numéro de réservation</h4>
+                        <p class="text-lg font-semibold">${reservation.reservationNumber}</p>
+                    </div>
+                    
+                    <div>
+                        <h4 class="text-sm font-medium text-gray-500">Client</h4>
+                        <p>${reservation.firstName} ${reservation.lastName}</p>
+                        <p>${reservation.email}</p>
+                        <p>${reservation.phone}</p>
+                    </div>
+                    
+                    <div>
+                        <h4 class="text-sm font-medium text-gray-500">Trajet</h4>
+                        <p>${reservation.departCity} → ${reservation.arrivalCity}</p>
+                        <p>${formatDate(reservation.departDate)} | ${reservation.departTime} - ${reservation.arrivalTime}</p>
+                    </div>
+                    
+                    <div>
+                        <h4 class="text-sm font-medium text-gray-500">Autocar</h4>
+                        <p class="capitalize">${autocar ? autocar.type : 'N/A'} - ${reservation.passengers} passager(s)</p>
+                    </div>
+                    
+                    <div>
+                        <h4 class="text-sm font-medium text-gray-500">Prix</h4>
+                        <p class="text-lg font-semibold">${reservation.price} €</p>
+                    </div>
+                    
+                    ${reservation.specialRequests ? `
+                        <div>
+                            <h4 class="text-sm font-medium text-gray-500">Demandes spéciales</h4>
+                            <p>${reservation.specialRequests}</p>
+                        </div>
+                    ` : ''}
+                </div>
+            `;
+            
+            document.getElementById('reservationModal').classList.remove('hidden');
+        }
+        
+        // Close reservation modal
+        function closeReservationModal() {
+            document.getElementById('reservationModal').classList.add('hidden');
+        }
+        
+        // Handle autocar form submission
+        document.getElementById('autocarForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const currentPartner = JSON.parse(sessionStorage.getItem('currentPartner'));
+            const autocarId = document.getElementById('autocarId').value;
+            
+            const autocarData = {
+                type: document.getElementById('autocarType').value,
+                capacite: parseInt(document.getElementById('autocarCapacite').value),
+                prix: parseInt(document.getElementById('autocarPrix').value),
+                disponible: document.getElementById('autocarDisponible').value === 'true',
+                partenaire_id: currentPartner.id,
+                image: getImageForType(document.getElementById('autocarType').value)
+            };
+            
+            if (autocarId) {
+                // Update existing autocar
+                DB.update('autocars', autocarId, autocarData);
+            } else {
+                // Add new autocar
+                DB.add('autocars', autocarData);
+            }
+            
+            // Close modal and reload autocars
+            closeAutocarModal();
+            loadAutocars();
+        });
+        
+        // Delete autocar
+        function deleteAutocar(autocarId) {
+            DB.delete('autocars', autocarId);
+            loadAutocars();
+        }
+        
+        // Get image URL for autocar type
+        function getImageForType(type) {
+            if (type === 'standard') {
+                return "https://images.unsplash.com/photo-1570125909232-eb263c188f7e?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80";
+            } else if (type === 'premium') {
+                return "https://images.unsplash.com/photo-1494515843206-f3117d3f51b7?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80";
+            } else if (type === 'vip') {
+                return "https://images.unsplash.com/photo-1464219789935-c2d9d9aba644?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80";
+            }
+            return "https://images.unsplash.com/photo-1570125909232-eb263c188f7e?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80";
+        }
+        
+        // Logout
+        document.getElementById('logoutButton').addEventListener('click', logout);
+        document.getElementById('logoutButtonMobile').addEventListener('click', logout);
+        
+        function logout() {
+            sessionStorage.removeItem('currentPartner');
+            window.location.href = 'login.html';
+        }
+    </script>
+</body>
+</html>

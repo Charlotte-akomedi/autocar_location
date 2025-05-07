@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Connexion Partenaire - AutocarsLocation</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body class="bg-gray-50 min-h-screen flex flex-col">
+    <!-- Header -->
+    <header class="bg-white shadow-sm">
+        <div class="container mx-auto px-4">
+            <div class="flex justify-between items-center h-16">
+                <a href="index.html" class="font-bold text-xl text-blue-600">
+                    AutocarsLocation
+                </a>
+
+                <!-- Desktop Navigation -->
+                <nav class="hidden md:flex items-center space-x-8">
+                    <a href="index.html" class="text-gray-700 hover:text-blue-600">
+                        Accueil
+                    </a>
+                    <a href="recherche.html" class="text-gray-700 hover:text-blue-600">
+                        Réserver
+                    </a>
+                    <a href="index.html#contact" class="text-gray-700 hover:text-blue-600">
+                        Contact
+                    </a>
+                </nav>
+
+                <!-- Contact Info - Desktop -->
+                <div class="hidden md:flex items-center space-x-4">
+                    <div class="flex items-center text-gray-700">
+                        <i class="fas fa-phone text-blue-600 mr-2"></i>
+                        <span>+33 1 23 45 67 89</span>
+                    </div>
+                </div>
+
+                <!-- Mobile Menu Button -->
+                <button id="menuButton" class="md:hidden text-gray-700">
+                    <i class="fas fa-bars h-6 w-6"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- Mobile Menu -->
+        <div id="mobileMenu" class="md:hidden bg-white border-t py-4 hidden">
+            <div class="container mx-auto px-4 space-y-4">
+                <nav class="flex flex-col space-y-4">
+                    <a href="index.html" class="text-gray-700 hover:text-blue-600 py-2">
+                        Accueil
+                    </a>
+                    <a href="recherche.html" class="text-gray-700 hover:text-blue-600 py-2">
+                        Réserver
+                    </a>
+                    <a href="index.html#contact" class="text-gray-700 hover:text-blue-600 py-2">
+                        Contact
+                    </a>
+                </nav>
+                <div class="pt-4 border-t flex flex-col space-y-4">
+                    <div class="flex items-center text-gray-700">
+                        <i class="fas fa-phone text-blue-600 mr-2"></i>
+                        <span>+33 1 23 45 67 89</span>
+                    </div>
+                    <div class="flex items-center text-gray-700">
+                        <i class="fas fa-envelope text-blue-600 mr-2"></i>
+                        <span>contact@autocars.com</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <div class="min-h-screen bg-gray-50 py-12">
+        <div class="container mx-auto px-4">
+            <div class="max-w-md mx-auto bg-white rounded-lg shadow-md overflow-hidden">
+                <div class="p-6 border-b">
+                    <h2 class="text-2xl font-bold text-center">Espace Partenaire</h2>
+                    <p class="text-gray-600 text-center mt-2">
+                        Connectez-vous pour gérer vos autocars et réservations
+                    </p>
+                </div>
+
+                <form id="loginForm" class="p-6 space-y-6">
+                    <div class="space-y-2">
+                        <label for="email" class="block text-sm font-medium text-gray-700">Email</label>
+                        <input
+                            id="email"
+                            name="email"
+                            type="email"
+                            class="w-full rounded-md border border-gray-300 py-2 px-3"
+                            required
+                        />
+                    </div>
+
+                    <div class="space-y-2">
+                        <label for="password" class="block text-sm font-medium text-gray-700">Mot de passe</label>
+                        <input
+                            id="password"
+                            name="password"
+                            type="password"
+                            class="w-full rounded-md border border-gray-300 py-2 px-3"
+                            required
+                        />
+                    </div>
+
+                    <div id="loginError" class="text-red-600 text-sm hidden">
+                        Email ou mot de passe incorrect. Veuillez réessayer.
+                    </div>
+
+                    <div>
+                        <button type="submit" class="w-full bg-blue-600 hover:bg-blue-700 text-white py-2 px-4 rounded-md">
+                            Se connecter
+                        </button>
+                    </div>
+                </form>
+
+                <div class="p-6 bg-gray-50 border-t">
+                    <h3 class="font-semibold mb-2">Comptes de démonstration</h3>
+                    <div class="space-y-2 text-sm">
+                        <div>
+                            <p><strong>Autocars Express</strong></p>
+                            <p>Email: contact@autocarsexpress.com</p>
+                            <p>Mot de passe: express123</p>
+                        </div>
+                        <div>
+                            <p><strong>Luxe Transport</strong></p>
+                            <p>Email: info@luxetransport.com</p>
+                            <p>Mot de passe: luxe123</p>
+                        </div>
+                        <div>
+                            <p><strong>Voyages Confort</strong></p>
+                            <p>Email: contact@voyagesconfort.com</p>
+                            <p>Mot de passe: confort123</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white py-8 mt-auto">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-col md:flex-row justify-between items-center">
+                <div class="mb-4 md:mb-0">
+                    <h2 class="text-2xl font-bold">AutocarsLocation</h2>
+                </div>
+                <div class="flex space-x-6">
+                    <a href="recherche.html" class="hover:text-blue-300">
+                        Réserver
+                    </a>
+                    <a href="index.html#contact" class="hover:text-blue-300">
+                        Contact
+                    </a>
+                    <a href="#" class="hover:text-blue-300">
+                        Mentions légales
+                    </a>
+                </div>
+            </div>
+            <div class="mt-8 text-center text-gray-400">
+                <p>© <span id="currentYear"></span> AutocarsLocation. Tous droits réservés.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/db.js"></script>
+    <script>
+        // Mobile menu toggle
+        document.getElementById('menuButton').addEventListener('click', function() {
+            const mobileMenu = document.getElementById('mobileMenu');
+            const menuIcon = this.querySelector('i');
+            
+            if (mobileMenu.classList.contains('hidden')) {
+                mobileMenu.classList.remove('hidden');
+                menuIcon.classList.remove('fa-bars');
+                menuIcon.classList.add('fa-times');
+            } else {
+                mobileMenu.classList.add('hidden');
+                menuIcon.classList.remove('fa-times');
+                menuIcon.classList.add('fa-bars');
+            }
+        });
+
+        // Set current year in footer
+        document.getElementById('currentYear').textContent = new Date().getFullYear();
+
+        // Handle login form submission
+        document.getElementById('loginForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+            
+            // Authenticate partner
+            const partenaire = DB.authenticatePartner(email, password);
+            
+            if (partenaire) {
+                // Store partner info in session storage
+                sessionStorage.setItem('currentPartner', JSON.stringify(partenaire));
+                
+                // Redirect to admin page
+                window.location.href = 'admin.html';
+            } else {
+                // Show error message
+                document.getElementById('loginError').classList.remove('hidden');
+            }
+        });
+    </script>
+</body>
+</html>
