@@ -35,9 +35,6 @@
                 <i class="fas fa-phone text-blue-600 mr-2"></i>
             <span>+33 1 23 45 67 89</span>
             </div>
-                <a href="inscription.html" class="bg-blue-600 hover:bg-blue-700 text-white text-sm px-4 py-2 rounded-md">
-                        S'inscrire
-                </a>
 </div>
 
 
@@ -82,7 +79,7 @@
                 <div class="p-6 border-b">
                     <h2 class="text-2xl font-bold text-center">Espace Partenaire</h2>
                     <p class="text-gray-600 text-center mt-2">
-                        Connectez-vous pour gérer vos autocars et réservations
+                        S'inscrire pour gérer vos autocars et réservations
                     </p>
                 </div>
 
@@ -115,31 +112,10 @@
 
                     <div>
                         <button type="submit" class="w-full bg-blue-600 hover:bg-blue-700 text-white py-2 px-4 rounded-md">
-                            Se connecter
+                            S'inscrire
                         </button>
                     </div>
                 </form>
-
-                <div class="p-6 bg-gray-50 border-t">
-                    <h3 class="font-semibold mb-2">Comptes de démonstration</h3>
-                    <div class="space-y-2 text-sm">
-                        <div>
-                            <p><strong>Autocars Express</strong></p>
-                            <p>Email: contact@autocarsexpress.com</p>
-                            <p>Mot de passe: express123</p>
-                        </div>
-                        <div>
-                            <p><strong>Luxe Transport</strong></p>
-                            <p>Email: info@luxetransport.com</p>
-                            <p>Mot de passe: luxe123</p>
-                        </div>
-                        <div>
-                            <p><strong>Voyages Confort</strong></p>
-                            <p>Email: contact@voyagesconfort.com</p>
-                            <p>Mot de passe: confort123</p>
-                        </div>
-                    </div>
-                </div>
             </div>
         </div>
     </div>
@@ -175,7 +151,6 @@
         document.getElementById('menuButton').addEventListener('click', function() {
             const mobileMenu = document.getElementById('mobileMenu');
             const menuIcon = this.querySelector('i');
-            
             if (mobileMenu.classList.contains('hidden')) {
                 mobileMenu.classList.remove('hidden');
                 menuIcon.classList.remove('fa-bars');
@@ -192,25 +167,24 @@
 
         // Handle login form submission
         document.getElementById('loginForm').addEventListener('submit', function(e) {
-            e.preventDefault();
-            
-            const email = document.getElementById('email').value;
-            const password = document.getElementById('password').value;
-            
-            // Authenticate partner
-            const partenaire = DB.authenticatePartner(email, password);
-            
-            if (partenaire) {
-                // Store partner info in session storage
-                sessionStorage.setItem('currentPartner', JSON.stringify(partenaire));
-                
-                // Redirect to admin page
-                window.location.href = 'admin.html';
-            } else {
-                // Show error message
-                document.getElementById('loginError').classList.remove('hidden');
-            }
-        });
+    e.preventDefault();
+    const email = document.getElementById('email').value;
+    const password = document.getElementById('password').value;
+
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+    if (emailRegex.test(email) && password.trim() !== '') {
+        document.getElementById('loginError').classList.add('hidden');
+
+        // Redirection vers page de confirmation
+        window.location.href = 'confirm.html';
+    } else {
+        document.getElementById('loginError').textContent = "Veuillez saisir un email valide et un mot de passe.";
+        document.getElementById('loginError').classList.remove('hidden');
+    }
+});
+
+
     </script>
 </body>
 </html>
